@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LANSIA-GUARD.ID</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background:#f4f7fb; margin:0; padding:0; }
+    header { background:#1f6feb; color:white; padding:20px; text-align:center; }
+    main { max-width:800px; margin:30px auto; background:white; padding:25px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    h2 { color:#1f6feb; }
+    label { display:block; margin-top:15px; font-weight:bold; }
+    input, select { width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    button { margin-top:25px; width:100%; padding:12px; background:#1f6feb; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; }
+    button:hover { background:#174ea6; }
+    .result { margin-top:30px; padding:20px; border-radius:6px; background:#eef3ff; display:none; }
+    footer { text-align:center; padding:15px; color:#666; font-size:14px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>LANSIA-GUARD.ID</h1>
+  <p>Web Deteksi Dini Penyakit Orang Tua Berbasis Data Harian</p>
+</header>
+
+<main>
+  <h2>Skrining Kesehatan Lansia</h2>
+  <p>Isi data berikut untuk mengetahui risiko awal penyakit. Hasil bukan diagnosis medis.</p>
+
+  <label>Usia (tahun)</label>
+  <input type="number" id="usia" />
+
+  <label>Tekanan Darah (sistolik)</label>
+  <input type="number" id="tekanan" />
+
+  <label>Kadar Gula Darah (mg/dL)</label>
+  <input type="number" id="gula" />
+
+  <label>Keluhan Utama</label>
+  <select id="keluhan">
+    <option value="ringan">Tidak ada / ringan</option>
+    <option value="sedang">Pusing / lelah</option>
+    <option value="berat">Nyeri dada / sering lupa</option>
+  </select>
+
+  <button onclick="analisis()">Analisis Risiko</button>
+
+  <div class="result" id="hasil">
+    <h3>Hasil Analisis Awal</h3>
+    <p id="output"></p>
+  </div>
+</main>
+
+<footer>
+  © 2026 LANSIA-GUARD.ID | Inovasi Pemuda untuk Kesehatan Indonesia
+</footer>
+
+<script>
+  function analisis() {
+    const usia = document.getElementById('usia').value;
+    const tekanan = document.getElementById('tekanan').value;
+    const gula = document.getElementById('gula').value;
+    const keluhan = document.getElementById('keluhan').value;
+
+    let risiko = "Risiko rendah. Tetap jaga pola hidup sehat.";
+
+    if (usia > 55 && tekanan > 140) {
+      risiko = "Risiko hipertensi terdeteksi. Disarankan kontrol tekanan darah dan konsultasi medis.";
+    }
+    if (gula > 180) {
+      risiko = "Risiko diabetes terdeteksi. Disarankan pemeriksaan lanjutan dan pengaturan pola makan.";
+    }
+    if (keluhan === "berat") {
+      risiko = "Terdapat keluhan serius. Segera lakukan konsultasi ke tenaga kesehatan.";
+    }
+
+    document.getElementById('output').innerText = risiko;
+    document.getElementById('hasil').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
+
